@@ -1,20 +1,18 @@
 // Em: src/app/museus/[id]/page.tsx
 
-// ✅ CORREÇÃO AQUI: A linha de importação estava faltando
 import { fetchMuseumById } from "@/lib/api";
 import ActionButton from "@/app/components/ActionButton";
 import WorkCard from "@/app/components/WorkCard";
-import { Work } from "@/lib/types";
-import Link from "next/link";
+import Link from 'next/link';
+import { Suspense } from 'react';
+
 export default async function MuseumDetailPage({ params }: { params: { id: string } }) {
   
-  const museum = await fetchMuseumById(params.id);
+  // ✅ PASSO 1: Lemos o ID uma única vez e guardamos numa variável
+  const id = params.id;
 
-  // LINHA DE DEPURAÇÃO
-  console.log(
-    "DADOS COMPLETOS DO MUSEU RECEBIDOS NA PÁGINA:",
-    JSON.stringify(museum, null, 2)
-  );
+  // ✅ PASSO 2: Usamos a nossa variável 'id' para buscar os dados
+  const museum = await fetchMuseumById(id);
 
   if (!museum) {
     return <p>Museu não encontrado.</p>;
@@ -27,7 +25,8 @@ export default async function MuseumDetailPage({ params }: { params: { id: strin
       <h1 className="detail-page-title">{museum.name}</h1>
       <p className="detail-page-description">{museum.description}</p>
       <div className="actions-container panel">
-        <Link href={`/museus/${params.id}/obras/novo`} style={{ textDecoration: 'none' }}>
+        {/* ✅ PASSO 3: Usamos a nossa variável 'id' aqui também */}
+        <Link href={`/museus/${id}/obras/novo`} style={{ textDecoration: 'none' }}>
             <ActionButton variant="add">
               Adicionar Obra
             </ActionButton>

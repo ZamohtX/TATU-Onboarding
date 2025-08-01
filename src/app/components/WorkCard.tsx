@@ -41,11 +41,11 @@ export default function WorkCard({ work }: WorkCardProps) {
       <div className="work-card-actions">
         <Link href={`/museus/${work.attraction_id}/obras/${work.id}/editar`}>
             <ActionButton variant="update">
-              📝 Editar
+               Editar
             </ActionButton>
         </Link>
         <ActionButton variant="delete" onClick={handleDelete}>
-          🗑️ Excluir
+          Excluir
         </ActionButton>
       </div>
     </div>
