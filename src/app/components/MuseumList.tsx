@@ -23,24 +23,23 @@ export default function MuseumList({ museus }: MuseumListProps) {
 
   const toggleMode = (mode: 'edit' | 'delete') => {
     if (activeMode === mode) {
-      router.push(pathname); // Desliga o modo se o mesmo botão for clicado
+      router.push(pathname);
     } else {
-      router.push(`${pathname}?mode=${mode}`); // Ativa o modo clicado
+      router.push(`${pathname}?mode=${mode}`);
     }
   };
 
-  const handleDelete = async (museu: Museu) => {
-    if (window.confirm(`Tem certeza que deseja excluir o museu "${museu.name}"?`)) {
-      try {
-        await deleteMuseum(museu.id);
-        alert('Museu excluído com sucesso!');
-        router.refresh();
-      } catch (error: any) {
-        alert(`Falha ao excluir o museu: ${error.message}`);
-      }
-    }
-  };
 
+const handleDelete = async (museu: Museu) => {
+  // ATENÇÃO: Isto vai apagar DIRETAMENTE sem pedir confirmação. É apenas para teste.
+  try {
+    await deleteMuseum(museu.id);
+    alert('Museu excluído com sucesso!');
+    router.refresh();
+  } catch (error: any) {
+    alert(`Falha ao excluir o museu: ${error.message}`);
+  }
+};
   return (
     <div className={`${isEditMode ? 'edit-mode-active' : ''} ${isDeleteMode ? 'delete-mode-active' : ''}`}>
       <div className="actions-container panel">
@@ -61,11 +60,15 @@ export default function MuseumList({ museus }: MuseumListProps) {
         
         {museus.map((museu) => {
           if (isDeleteMode) {
-            // Em modo de exclusão, o card é um 'div' com um evento de clique
+            // ✅ CORREÇÃO: Trocamos o 'div' por um 'button'
             return (
-              <div key={museu.id} onClick={() => handleDelete(museu)} className="card-link-wrapper">
+              <button 
+                key={museu.id} 
+                onClick={() => handleDelete(museu)} 
+                className="card-as-button"
+              >
                 <Card museu={museu} />
-              </div>
+              </button>
             );
           }
           // Em modo de edição ou normal, o card é um Link de navegação

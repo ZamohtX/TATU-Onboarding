@@ -451,3 +451,24 @@ body {
   background-color: #5a626a; /* Um pouco mais claro */
   border-left-color: #dc3545; /* Borda vermelha indica ação de perigo */
 }
+
+.card-as-button {
+  background: none; /* Remove fundo padrão do botão */
+  color: inherit; /* Herda a cor do texto do pai */
+  border: none; /* Remove a borda padrão */
+  padding: 0; /* Remove o padding padrão */
+  font: inherit; /* Herda a fonte do pai */
+  cursor: pointer; /* Mantém o cursor de clique */
+  outline: inherit; /* Herda o outline (foco) */
+  width: 100%; /* Faz o botão ocupar toda a largura disponível */
+  text-align: left; /* Alinha o conteúdo interno à esquerda */
+}
+/* ========================================= */
+/* CORREÇÃO PARA O CLIQUE NO CARD-BOTÃO      */
+/* ========================================= */
+
+/* Esta regra diz que qualquer elemento filho direto de '.card-as-button'
+   deve ignorar os eventos do rato, deixando o clique passar para o botão pai. */
+.card-as-button > * {
+  pointer-events: none;
+}

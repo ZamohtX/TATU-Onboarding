@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Work } from "@/lib/types";
 import { useRouter } from "next/navigation";
 import ActionButton from './ActionButton';
-import { deleteWork } from "@/lib/api"; // Importa a função para DELETAR OBRAS
+import { deleteWork } from "@/lib/api";
 
 interface WorkCardProps {
   work: Work;
@@ -14,18 +14,21 @@ interface WorkCardProps {
 export default function WorkCard({ work }: WorkCardProps) {
   const router = useRouter();
 
-  // ✅ Esta é a função handleDelete para OBRAS
+  // ✅ LÓGICA DE CONFIRMAÇÃO 'window.confirm' REMOVIDA
   const handleDelete = async () => {
-    if (window.confirm(`Tem certeza que deseja excluir a obra "${work.title}"?`)) {
-      try {
-        await deleteWork(work.id); // Chama a função deleteWork
-        alert('Obra excluída com sucesso!');
-        router.refresh();
-      } catch (error: any) {
-        alert(`Falha ao excluir a obra: ${error.message}`);
-        console.error(error);
-      }
+    try {
+      // A chamada à API agora é executada diretamente ao clicar
+      await deleteWork(work.id);
+      alert('Obra excluída com sucesso!');
+      router.refresh();
+    } catch (error: any) {
+      alert(`Falha ao excluir a obra: ${error.message}`);
+      console.error(error);
     }
+  };
+
+  const handleUpdate = () => {
+    router.push(`/museus/${work.attraction_id}/obras/${work.id}/editar`);
   };
 
   return (
