@@ -1,4 +1,3 @@
-// Em: src/app/components/MuseumList.tsx
 'use client';
 
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
@@ -31,7 +30,6 @@ export default function MuseumList({ museus }: MuseumListProps) {
 
 
 const handleDelete = async (museu: Museu) => {
-  // ATENÇÃO: Isto vai apagar DIRETAMENTE sem pedir confirmação. É apenas para teste.
   try {
     await deleteMuseum(museu.id);
     alert('Museu excluído com sucesso!');
@@ -60,7 +58,6 @@ const handleDelete = async (museu: Museu) => {
         
         {museus.map((museu) => {
           if (isDeleteMode) {
-            // ✅ CORREÇÃO: Trocamos o 'div' por um 'button'
             return (
               <button 
                 key={museu.id} 
@@ -71,7 +68,6 @@ const handleDelete = async (museu: Museu) => {
               </button>
             );
           }
-          // Em modo de edição ou normal, o card é um Link de navegação
           const href = isEditMode ? `/museus/${museu.id}/editar` : `/museus/${museu.id}`;
           return (
             <Link key={museu.id} href={href} className="card-link-wrapper">

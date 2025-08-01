@@ -1,4 +1,3 @@
-// Em: src/app/page.tsx
 import { fetchAttractions } from '@/lib/api';
 import MuseumList from '@/app/components/MuseumList';
 import { Suspense } from 'react';

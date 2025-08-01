@@ -1,4 +1,3 @@
-// Em: src/app/components/WorkForm.tsx
 'use client';
 
 import { useState } from 'react';
@@ -8,7 +7,7 @@ import { Work, WorkParaCriar } from '@/lib/types';
 
 interface WorkFormProps {
   museumId: number;
-  initialData?: Work; // Propriedade opcional para dados iniciais (edição)
+  initialData?: Work; 
 }
 
 export default function WorkForm({ museumId, initialData }: WorkFormProps) {
@@ -39,7 +38,7 @@ export default function WorkForm({ museumId, initialData }: WorkFormProps) {
         await createWork(workData);
         alert('Obra criada com sucesso!');
       }
-      router.push(`/museus/${museumId}`); // Volta para a página de detalhes do museu
+      router.push(`/museus/${museumId}`); 
       router.refresh();
     } catch (error: any) {
       alert(`Erro ao salvar a obra: ${error.message}`);

@@ -1,4 +1,3 @@
-// Em: src/app/obras/page.tsx
 
 import { fetchAllWorks } from "@/lib/api";
 import WorkCard from "@/app/components/WorkCard";

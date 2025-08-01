@@ -1,4 +1,3 @@
-// Em: src/app/museus/[id]/page.tsx
 
 import { fetchMuseumById } from "@/lib/api";
 import ActionButton from "@/app/components/ActionButton";
@@ -8,10 +7,8 @@ import { Suspense } from 'react';
 
 export default async function MuseumDetailPage({ params }: { params: { id: string } }) {
   
-  // ✅ PASSO 1: Lemos o ID uma única vez e guardamos numa variável
   const id = params.id;
 
-  // ✅ PASSO 2: Usamos a nossa variável 'id' para buscar os dados
   const museum = await fetchMuseumById(id);
 
   if (!museum) {
@@ -25,7 +22,6 @@ export default async function MuseumDetailPage({ params }: { params: { id: strin
       <h1 className="detail-page-title">{museum.name}</h1>
       <p className="detail-page-description">{museum.description}</p>
       <div className="actions-container panel">
-        {/* ✅ PASSO 3: Usamos a nossa variável 'id' aqui também */}
         <Link href={`/museus/${id}/obras/novo`} style={{ textDecoration: 'none' }}>
             <ActionButton variant="add">
               Adicionar Obra

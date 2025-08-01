@@ -1,4 +1,3 @@
-// Em: src/app/components/WorkCard.tsx
 'use client';
 
 import Link from 'next/link';
@@ -14,10 +13,8 @@ interface WorkCardProps {
 export default function WorkCard({ work }: WorkCardProps) {
   const router = useRouter();
 
-  // ✅ LÓGICA DE CONFIRMAÇÃO 'window.confirm' REMOVIDA
   const handleDelete = async () => {
     try {
-      // A chamada à API agora é executada diretamente ao clicar
       await deleteWork(work.id);
       alert('Obra excluída com sucesso!');
       router.refresh();

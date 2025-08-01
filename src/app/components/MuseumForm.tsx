@@ -1,4 +1,3 @@
-// Em: src/app/components/MuseumForm.tsx
 'use client';
 
 import React, { useState } from "react";
@@ -11,15 +10,12 @@ interface MuseumFormProps {
 }
 
 export default function MuseumForm({ initialData }: MuseumFormProps) {
-    // Esta é a linha mais importante: o estado inicial é definido aqui.
     const [name, setName] = useState(initialData?.name || '');
     const [description, setDescription] = useState(initialData?.description || '');
     
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
 
-    // Esta flag determina qual função chamar.
-    // Ela só será 'true' se 'initialData' for um objeto válido.
     const isEditing = !!initialData;
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -28,11 +24,9 @@ export default function MuseumForm({ initialData }: MuseumFormProps) {
 
         try {
             if (isEditing) {
-                // Se 'isEditing' for true, chama a função de ATUALIZAR
                 await updateMuseum(initialData.id, { name, description });
                 alert('Museu atualizado com sucesso!');
             } else {
-                // Se 'isEditing' for false, chama a função de CRIAR
                 await createMuseum({ name, description });
                 alert('Museu criado com sucesso!');
             }

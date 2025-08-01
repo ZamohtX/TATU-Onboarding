@@ -1,4 +1,3 @@
-// Em: src/app/museus/[id]/obras/novo/page.tsx
 
 import WorkForm from "@/app/components/WorkForm";
 

@@ -1,5 +1,4 @@
-// src/app/layout.tsx
-import '@/styles/globals.css'; // <--- ESSA LINHA É FUNDAMENTAL
+import '@/styles/globals.css'; 
 import Header from './components/Header';
 import type { Metadata } from 'next';
 import {Inter} from "next/font/google";

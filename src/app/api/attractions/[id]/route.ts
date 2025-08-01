@@ -8,7 +8,7 @@ const controller = new AttractionController();
 // GET /api/attractions/[id]
 export async function GET(
     request: NextRequest,
-    { params }: { params: { id: string } } // ✅ CORREÇÃO: 'params' vem do segundo argumento
+    { params }: { params: { id: string } } 
 ) {
   try {
     const id = parseInt(params.id);
@@ -26,7 +26,7 @@ export async function GET(
 // PUT /api/attractions/:id
 export async function PUT(
     request: NextRequest,
-    { params }: { params: { id: string } } // ✅ CORREÇÃO: 'params' vem do segundo argumento
+    { params }: { params: { id: string } } 
 ){
     try {
         const id = parseInt(params.id);
@@ -41,7 +41,7 @@ export async function PUT(
 // DELETE /api/attractions/:id
 export async function DELETE(
     request: NextRequest,
-    { params }: { params: { id: string } } // ✅ CORREÇÃO: 'params' vem do segundo argumento
+    { params }: { params: { id: string } } 
 ){
     try{
         const id = parseInt(params.id);

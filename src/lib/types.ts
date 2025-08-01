@@ -1,4 +1,3 @@
-// src/lib/types.ts
 
 export interface Museu {
   id: string;
