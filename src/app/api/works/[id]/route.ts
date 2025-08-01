@@ -26,13 +26,25 @@ export async function PUT(req: NextRequest, context: { params: Promise<{ id: str
   }
 }
 
-export async function DELETE(req: NextRequest, context: { params: Promise<{ id: string }> }) {
+
+// No seu ficheiro de rota da API de obras
+
+export async function DELETE(
+  req: NextRequest, 
+  { params }: { params: { id: string } } // ✅ CORREÇÃO 1: A assinatura correta
+) {
   try {
-    const params = await context.params;
+    // ✅ CORREÇÃO 2: Acessamos 'params.id' diretamente, sem 'await'
     const id = Number(params.id);
+
+    // É uma boa prática verificar se o ID é um número válido
+    if (isNaN(id)) {
+      return NextResponse.json({ error: "ID inválido." }, { status: 400 });
+    }
+
     const deleted = await controller.delete(id);
     return NextResponse.json(deleted);
   } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 400 });
+    return NextResponse.json({ error: error.message }, { status: 500 }); // Usar 500 para erros de servidor é mais comum
   }
 }

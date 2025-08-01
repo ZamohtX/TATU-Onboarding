@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 const controller = new AttractionController();
 
-// Post /api/attractions
+// POST /api/attractions
 export async function POST(request: NextRequest) {
     try {
         const body = await request.json();
