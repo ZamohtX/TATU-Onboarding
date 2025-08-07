@@ -1,8 +1,0 @@
--- CreateTable
-CREATE TABLE "Obra" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "titulo" TEXT NOT NULL,
-    "artista" TEXT NOT NULL,
-    "criadoEm" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "atualizadoEm" DATETIME NOT NULL
-);
